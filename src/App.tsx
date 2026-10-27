@@ -16,7 +16,9 @@ export default function App() {
   const [tab, setTab] = useState<Tab>('today')
   const Screen = SCREENS[tab]
 
-  useEffect(() => window.scrollTo(0, 0), [tab])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [tab])
 
   return (
     // "user" = skip transform animations for people who turned on reduced motion in their OS

@@ -19,6 +19,10 @@ export function TitleSync() {
     document.title = task ? `${formatClock(ms)} · ${task.name}` : DEFAULT_TITLE
   }, [task, ms])
 
-  useEffect(() => () => void (document.title = DEFAULT_TITLE), [])
+  useEffect(() => {
+    return () => {
+      document.title = DEFAULT_TITLE
+    }
+  }, [])
   return null
 }
