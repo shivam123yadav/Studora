@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { formatClock } from '../lib/time'
 import { useTasks, useTodayTotals } from '../hooks/useTimer'
 
-const DEFAULT_TITLE = 'Study Timer'
+const DEFAULT_TITLE = 'Studora'
 
 /**
  * Mirrors the running timer into the browser tab title ("1:02:05 · Maths"), so you can see
@@ -19,10 +19,6 @@ export function TitleSync() {
     document.title = task ? `${formatClock(ms)} · ${task.name}` : DEFAULT_TITLE
   }, [task, ms])
 
-  useEffect(() => {
-    return () => {
-      document.title = DEFAULT_TITLE
-    }
-  }, [])
+  useEffect(() => () => void (document.title = DEFAULT_TITLE), [])
   return null
 }

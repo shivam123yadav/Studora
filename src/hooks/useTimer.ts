@@ -32,7 +32,10 @@ export function useTasks() {
   )
 }
 
-/** The running session, or undefined. `null` while the first query loads. */
+/**
+ * The running session; `null` when nothing is running; `undefined` while the first
+ * query is still loading (that is what useLiveQuery returns before it has a result).
+ */
 export function useRunningSession() {
   return useLiveQuery(async () => (await getRunningSession()) ?? null, [])
 }
@@ -50,5 +53,5 @@ export function useTodayTotals() {
     return recent
   }, [dayStart])
   const totals = sessions ? msByTask(sessions, dayStart, addDays(dayStart, 1), now) : new Map<number, number>()
-  return { totals, running: running ?? undefined, now, loading: sessions === undefined || running === null }
+  return { totals, running: running ?? undefined, now, loading: sessions === undefined || running === undefined }
 }

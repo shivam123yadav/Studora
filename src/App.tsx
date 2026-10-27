@@ -16,6 +16,8 @@ export default function App() {
   const [tab, setTab] = useState<Tab>('today')
   const Screen = SCREENS[tab]
 
+  // Braces matter: an effect must return nothing or a cleanup function. Without them it would
+  // return whatever scrollTo returns, which React rejects ("destroy is not a function").
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [tab])

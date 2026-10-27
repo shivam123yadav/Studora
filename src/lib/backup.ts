@@ -3,6 +3,7 @@ import type { Session, Task } from './types'
 
 /** Everything lives in this one browser, so a backup file is the only copy that can survive a wiped phone. */
 export interface Backup {
+  /** File-format identifier, not the display name. Kept as-is so backups made before the rename still import. */
   app: 'study-timer'
   version: 1
   exportedAt: number
@@ -20,7 +21,7 @@ export async function exportData(now = Date.now()): Promise<Backup> {
 export function backupFilename(now = Date.now()): string {
   const d = new Date(now)
   const p = (n: number) => String(n).padStart(2, '0')
-  return `study-timer-backup-${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}.json`
+  return `studora-backup-${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}.json`
 }
 
 const isNum = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v)
@@ -28,7 +29,7 @@ const isId = (v: unknown): v is number => isNum(v) && Number.isInteger(v) && v >
 
 /**
  * Validate and normalise a backup file's text. Throws BackupError with a readable
- * message for anything that isn't a Study Timer backup. Sessions that point at a
+ * message for anything that isn't a Studora backup. Sessions that point at a
  * missing task are dropped (and counted in `skipped`), and the "only the latest
  * session may be running" rule is restored.
  */
@@ -39,9 +40,9 @@ export function parseBackup(text: string): { backup: Backup; skipped: number } {
   } catch {
     throw new BackupError('That file is not valid JSON.')
   }
-  if (typeof raw !== 'object' || raw === null) throw new BackupError('That is not a Study Timer backup.')
+  if (typeof raw !== 'object' || raw === null) throw new BackupError('That is not a Studora backup.')
   const r = raw as Record<string, unknown>
-  if (r.app !== 'study-timer') throw new BackupError('That is not a Study Timer backup.')
+  if (r.app !== 'study-timer') throw new BackupError('That is not a Studora backup.')
   if (r.version !== 1) throw new BackupError('This backup was made by a newer version of the app.')
   if (!Array.isArray(r.tasks) || !Array.isArray(r.sessions)) throw new BackupError('The backup is missing its data.')
 

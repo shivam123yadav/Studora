@@ -1,4 +1,4 @@
-# Study Timer
+# Studora
 
 A simple, modern time tracker for studying. Give each task a daily target, start / pause / resume
 freely, switch between tasks with one tap, and see day, week and month stats.
@@ -48,13 +48,13 @@ Sign-up may ask for details; check what it asks for on their page.
 
 ### 1. Push the code to GitHub
 
-1. On github.com click **New repository**, name it `study-timer`, leave it empty (no README,
+1. On github.com click **New repository**, name it `studora`, leave it empty (no README,
    no .gitignore), and click **Create repository**.
 2. In this project folder:
 
 ```bash
 git branch -M main
-git remote add origin https://github.com/<your-username>/study-timer.git
+git remote add origin https://github.com/<your-username>/studora.git
 git push -u origin main
 ```
 
@@ -64,10 +64,10 @@ password.
 ### 2. Deploy on Vercel
 
 1. Go to vercel.com and choose **Sign Up -> Continue with GitHub**.
-2. Click **Add New -> Project**, find `study-timer`, and click **Import**.
+2. Click **Add New -> Project**, find `studora`, and click **Import**.
 3. Vercel should detect the **Vite** preset. Leave the defaults (build command `npm run build`,
    output directory `dist`).
-4. Click **Deploy**. After about a minute you get a URL like `study-timer-xxxx.vercel.app`.
+4. Click **Deploy**. After about a minute you get a URL like `studora-xxxx.vercel.app`.
 
 Every later `git push` to `main` redeploys automatically.
 

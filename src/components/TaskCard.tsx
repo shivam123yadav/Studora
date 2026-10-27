@@ -28,7 +28,9 @@ export function TaskCard({ task, ms, running, onEdit }: Props) {
       style={{
         // Running card gets an accent ring so the active task is obvious at a glance
         ['--tw-ring-color' as string]: running ? color : 'var(--border)',
-        boxShadow: running ? `0 8px 24px -12px ${color}` : undefined,
+        // Always a defined value: framer-motion keeps the last value when a style goes to
+        // `undefined`, which left the glow stuck on after a task was paused.
+        boxShadow: `0 8px 24px -12px ${running ? color : 'transparent'}`,
       }}
     >
       <div className="flex items-center gap-3">

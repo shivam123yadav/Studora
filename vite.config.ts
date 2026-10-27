@@ -13,8 +13,8 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       manifest: {
         id: '/',
-        name: 'Study Timer',
-        short_name: 'Study Timer',
+        name: 'Studora',
+        short_name: 'Studora',
         description: 'Simple time tracker for focused study sessions',
         theme_color: '#6366f1',
         background_color: '#f7f7fb',

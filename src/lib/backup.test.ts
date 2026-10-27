@@ -56,7 +56,7 @@ describe('backup', () => {
 
   it('rejects files that are not backups', () => {
     expect(() => parseBackup('not json')).toThrow(BackupError)
-    expect(() => parseBackup('{"hello":1}')).toThrow(/not a Study Timer backup/)
+    expect(() => parseBackup('{"hello":1}')).toThrow(/not a Studora backup/)
     expect(() => parseBackup('null')).toThrow(BackupError)
     expect(() => parseBackup('{"app":"study-timer","version":2,"tasks":[],"sessions":[]}')).toThrow(/newer version/)
     expect(() => parseBackup('{"app":"study-timer","version":1,"tasks":[{"id":1}],"sessions":[]}')).toThrow(/damaged/)
@@ -95,6 +95,6 @@ describe('backup', () => {
   })
 
   it('names the file by local date', () => {
-    expect(backupFilename(new Date(2026, 9, 7, 12).getTime())).toBe('study-timer-backup-2026-10-07.json')
+    expect(backupFilename(new Date(2026, 9, 7, 12).getTime())).toBe('studora-backup-2026-10-07.json')
   })
 })
